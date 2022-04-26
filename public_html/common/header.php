@@ -30,8 +30,9 @@
 <body>
     <?php 
     session_start();
-    if(isset($_SESSION['loggedin']) && $_SESSION['loggedin']==true){
+    if(isset($_SESSION['loggedin']) && $_SESSION['loggedin']==true && $_SESSION['name']){
         $loggedin=true;
+        $access=true;
     }else{
         $loggedin=false;
     }
@@ -54,9 +55,12 @@
 
             }
                  if($loggedin){
-                   echo '<li><a href="../login/logout.php">SUBSCRIPTIONS</a></li>';
+                   echo '<li><a href="../login/subs.php">SUBSCRIPTIONS</a></li>';
                    echo '<li><a href="../login/logout.php">LOG OUT</a></li>';
-                   echo '<li><a href="../../users/index.php">MANAGE</a></li>';
+                   
+                   
+                       echo '<li><a href="../../users/index.php">MANAGE</a></li>';
+                   
                    
                  
                  }

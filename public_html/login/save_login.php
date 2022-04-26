@@ -17,21 +17,33 @@ if (isset($_POST['submit'])) {
         if ($email_count>0) {
             $email_pass = mysqli_fetch_assoc($query);
             $login=true;
-           
             $db_pass = $email_pass['password'];
-            session_start();
-            $_SESSION['loggedin']=true;
-            $_SESSION['name']=$username;
+            
+
+            //comments
             $pass_decode = password_verify($password, $db_pass);
             if ($pass_decode) {
+                session_start();
+            $_SESSION['loggedin']=true;
+            $_SESSION['name']=$username;
                 echo "login success";
                 header('location:../../public_html/pages/index.php');
                
             } else {
-                echo " wrong password";
+                // echo " wrong password";
+                ?>
+                <script>alert('invalid Inputs')</script>
+                    
+                <?php
+                header('location:./login.php');
             }
         } else {
-            echo "Invalid email";
+            // echo "Invalid email";
+            ?>
+                <script>alert('invalid')</script>
+
+            <?php
+        header('location:./login.php');
         }
     }
    
