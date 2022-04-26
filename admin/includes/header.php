@@ -42,6 +42,9 @@ if(isset($_SESSION['admin_login']) && $_SESSION['admin_login']!=''){
 				  <li class="menu-item-has-children dropdown">
                      <a href="users.php" > Users</a>
                   </li>
+				  <li class="menu-item-has-children dropdown">
+                     <a href="subs_users.php" > Subscribed Users</a>
+                  </li>
 				  
                </ul>
             </div>

@@ -8,7 +8,7 @@ if ($user) {
    if ($count =='') {
       
       echo "<script>alert('First Of All Take Subscription !')</script>";
-      header('location:../public_html/login/subs.php');
+      header('location:../subscription/index.php');
       
    }
 }

@@ -55,17 +55,16 @@
 
             }
                  if($loggedin){
-                   echo '<li><a href="../login/subs.php">SUBSCRIPTIONS</a></li>';
+                   echo '<li><a href="../../subscription/index.php">SUBSCRIPTIONS</a></li>';
                    echo '<li><a href="../login/logout.php">LOG OUT</a></li>';
                    
                    
-                       echo '<li><a href="../../users/index.php">MANAGE</a></li>';
+                       echo '<li><a href="../../users/index.php">ART</a></li>';
                    
-                   
+                      echo' <li><a href="../../scrap_users/index.php">SCRAP</a></li>';
                  
                  }
                echo ' 
-                <li><a href="../../admin/category.php">ADMIN</a></li>
             </ul>
         </div>
     </div>
