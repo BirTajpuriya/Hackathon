@@ -41,7 +41,7 @@ $res = mysqli_query($conn, $sql);
                               <th>Email</th>
                               <th>Mobile</th>
                               <th>Date</th>
-                              <th>Status</th>
+                              <!-- <th>Status</th> -->
                               <th>Action</th>
 
                            </tr>
@@ -57,7 +57,7 @@ $res = mysqli_query($conn, $sql);
                                  <td><?php echo $row['email'] ?></td>
                                  <td><?php echo $row['phone'] ?></td>
                                  <td><?php echo $row['added_on'] ?></td>
-                                 <td><?php
+                                 <!-- <td><?php
                                        if ($row['status'] == 1) {
                                           echo "<a href='?type=status&operation=deactive&id=" . $row['id'] . "'>Active</a>";
                                        } else {
@@ -65,7 +65,7 @@ $res = mysqli_query($conn, $sql);
                                        }
 
 
-                                       ?></td>
+                                       ?></td> -->
                                  <td><a href="delete_users.php?id=<?php echo $row['id']; ?>">Delete</a>&nbsp;
 
                                     
