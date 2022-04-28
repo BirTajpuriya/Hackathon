@@ -24,7 +24,7 @@ if (isset($_GET['type']) && $_GET['type'] != '') {
       $update_status = "update product set section='$section' where id='$id'";
       mysqli_query($conn, $update_status);
    }
-
+  
 }
 
 
@@ -53,10 +53,11 @@ $res = mysqli_query($conn, $sql);
                               <th>image</th>
                               <th>Price</th>
                               <th>Qty</th>
-                  
+
                               <th>Section</th>
                               <th>Status</th>
-                              <th>Action<th>
+                              <th>Action
+                              <th>
                            </tr>
                         </thead>
                         <tbody>
@@ -68,7 +69,7 @@ $res = mysqli_query($conn, $sql);
                                  <td><?php echo $row['id'] ?></td>
                                  <td><?php echo $row['category'] ?></td>
                                  <td><?php echo $row['name'] ?></td>
-                                 <td><img src="./images/<?php echo $row['image'] ?>" ></td>
+                                 <td><img src="./images/<?php echo $row['image'] ?>"></td>
                                  <td><?php echo $row['price'] ?></td>
                                  <td><?php echo $row['qty'] ?></td>
                                  <td><?php
@@ -89,11 +90,14 @@ $res = mysqli_query($conn, $sql);
 
 
                                        ?></td>
-                                       </td>
-                                    <td><a href="delete_product.php?id=<?php echo $row['id'];?>">Delete</a>&nbsp;
 
-                                    <a href='add_product.php?id=<?php echo $row['id'];?>'>Edit</a></td>
-                                  
+                                 
+                                 </td>
+                                 <td><a href="delete_product.php?id=<?php echo $row['id']; ?>">Delete</a>&nbsp;
+
+                                    <a href='add_product.php?id=<?php echo $row['id']; ?>'>Edit</a>
+                                 </td>
+
                               </tr>
                            <?php } ?>
                         </tbody>
