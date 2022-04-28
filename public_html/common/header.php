@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -30,9 +29,10 @@
 <body>
     <?php 
     session_start();
+    // include('../../db.php');
+
     if(isset($_SESSION['loggedin']) && $_SESSION['loggedin']==true && $_SESSION['name']){
         $loggedin=true;
-        $access=true;
     }else{
         $loggedin=false;
     }
@@ -44,19 +44,22 @@
         <div class="midnav">
             <ul class="navitem">
                 <li><a href=index.php>HOME</a></li>
-                <li><a href=index.php>ABOUT</a></li>
-                <li><a href=index.php>CONTACT</a></li>
+                <li><a href="../pages/artshop.php">ART GLLERY</a></li>
+                <li><a href="../pages/scrapshop.php">SCRAP SHOP</a></li>
             </ul>
         </div>
         <div class="rightnav">
             <ul class="navitem">';
             if(!$loggedin){
-              echo '  <li><a href="../login/login.php">LOGIN</a></li>';
+              echo '  <li><a href="../login/login.php">LOGIN</a></li>
+              <li><a href="../../admin/category.php">ADMIN</a></li>
+              ';
 
             }
                  if($loggedin){
                    echo '<li><a href="../../subscription/index.php">SUBSCRIPTIONS</a></li>';
-                   echo '<li><a href="../login/logout.php">LOG OUT</a></li>';
+                   echo '<li><a href="../login/logout.php">LOG OUT</a></li>
+                   ';
                    
                    
                        echo '<li><a href="../../users/index.php">ART</a></li>';

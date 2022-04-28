@@ -45,7 +45,7 @@
             <div class="top-right">
                <div class="header-menu">
                   <div class="user-area dropdown float-right">
-                     <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Welcome</a>
+                     <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Welcome <?php echo $_SESSION['name']?></a>
                      <div class="user-menu dropdown-menu">
                         <a class="nav-link" href="#"><i class="fa fa-power-off"></i>Logout</a>
                      </div>

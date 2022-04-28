@@ -13,9 +13,9 @@ if (isset($_GET['type']) && $_GET['type'] != '') {
       $update_status = "update product set status='$status' where id='$id'";
       mysqli_query($conn, $update_status);
    }
+  
 
 }
-
 
 $sql = "select product.*,category.category from product, category where product.category_id=category.id order by product.id asc";
 $res = mysqli_query($conn, $sql);
@@ -42,7 +42,7 @@ $res = mysqli_query($conn, $sql);
                               <th>image</th>
                               <th>Price</th>
                               <th>Qty</th>
-                  
+                              <th>featured art</th>
                               <th>Status</th>
                               <th>Action<th>
                            </tr>
@@ -59,6 +59,26 @@ $res = mysqli_query($conn, $sql);
                                  <td><img src="./images/<?php echo $row['image'] ?>" width="200" height="60" alt=""></td>
                                  <td><?php echo $row['price'] ?></td>
                                  <td><?php echo $row['qty'] ?></td>
+                                 <td><?php
+                                  if ($type = 'featured_art') {
+                                    $operation =  mysqli_real_escape_string($conn, $_GET['operation']);
+                                    $id =  mysqli_real_escape_string($conn, $_GET['id']);
+                                    if ($operation == 'show') {
+                                       $featured_art = '1';
+                                    } else {
+                                       $featured_art = '0';
+                                    }
+                                    $update_status = "update product set featured_art='$featured_art' where id='$id'";
+                                    mysqli_query($conn, $update_status);
+                                 }
+                                       if ($row['featured_art'] == 0) {
+                                          echo "<a href='?type=featured_art&operation=show&id=" . $row['id'] . "'>Active</a>";
+                                       } else {
+                                          echo "<a href='?type=featured_art&operation=unshow&id=" . $row['id'] . "'>Deactive</a>";
+                                       }
+
+
+                                       ?></td>
                                  <td><?php
                                        if ($row['status'] == 1) {
                                           echo "<a href='?type=status&operation=deactive&id=" . $row['id'] . "'>Active</a>";

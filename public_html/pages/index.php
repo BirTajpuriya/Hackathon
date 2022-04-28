@@ -6,12 +6,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Waste To Art</title>
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" type='text/css' href="../css/style.css">
 </head>
 
 <body>
     <?php
+    $server="localhost";
+    $user="root";
+    $password="";
+    $db="wastetoart";
+    
+    $conn=mysqli_connect($server,$user,$password,$db) or die('connection failed');
+    
     include("../common/header.php");
+
+
+
     ?>
     <div class="container">
         <div class="top">
@@ -58,6 +68,7 @@
         <h1 class="artcatagory">Art Catagory</h1>
         <div class="menu-wrapper">
             <div class="catagory">
+        
                 <div class="cat1 cat">
                     <h2>ELECTRIC</h2>
                 </div>
@@ -98,7 +109,7 @@
 
     <!--place for product-->
     <?php
-    include(".././pages/product.php");
+    include("./product.php");
     ?>
 
     <div class="awaire">

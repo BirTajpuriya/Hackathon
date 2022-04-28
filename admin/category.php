@@ -41,6 +41,7 @@ $res = mysqli_query($conn, $sql);
                               <th>Categories</th>
                               <th>Image</th>
                               <th>Status</th>
+                              <th>Section</th>
                               <th>Action</th>
                               
                            </tr>
@@ -64,6 +65,21 @@ $res = mysqli_query($conn, $sql);
 
 
                                        ?></td>
+                                       
+                                       <td>
+                                          <?php
+                                         if ($row['section'] == 0) {
+                                          echo "<a href='?type=status&operation=deactive&id=".$row['id'] . "'>Art</a>";
+                                       } else {
+                                          echo "<a href='?type=status&operation=active&id=".$row['id'] . "'>Waste</a>";
+                                       }
+
+
+                                          
+                                          ?>
+
+                                       </td>
+
                                     <td><a href="delete_category.php?id=<?php echo $row['id'];?>">Delete</a>&nbsp;
 
                                     <a href='add_category.php?id=<?php echo $row['id'];?>'>Edit</a></td>

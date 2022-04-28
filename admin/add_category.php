@@ -15,28 +15,24 @@ if (isset($_GET['id']) && $_GET['id'] != '') {
 
 if (isset($_POST['submit'])) {
     $category = mysqli_real_escape_string($conn, $_POST['category']);
+    $section_id= mysqli_real_escape_string($conn, $_POST['section_id']);
     $image=mysqli_real_escape_string($conn,$_POST['image']);
-    $sql = "select * from category where category ='$category' ";
-    $res = mysqli_query($conn, $sql);
-    $check = mysqli_num_rows($res);
-
-    if ($check > 0) {
-        $msg = "category already exists !";
-    } else {
-
+   
         if (isset($_GET['id']) && $_GET['id'] != '') {
-            $sql = "update category set category ='$category' where id='$id'";
+            $image=rand(11111111,99999999).'_'.$_FILES['image']['name'];
+            move_uploaded_file($_FILES['image']['tmp_name'],'./images/'.$image);
+            $sql = "update category set category ='$category', section='$section_id', image='$image' where id='$id'";
             mysqli_query($conn, $sql);
         } else {
             $image=rand(11111111,99999999).'_'.$_FILES['image']['name'];
             move_uploaded_file($_FILES['image']['tmp_name'],'./images/'.$image);
-            $sql = "insert into category(category,status,image) values('$category',0,'$image')";
+            $sql = "insert into category(category,status,image,section) values('$category',0,'$image','$section_id')";
             mysqli_query($conn, $sql);
         }
 
         header('location:category.php');
         die();
-    }
+    
 }
 
 
@@ -52,7 +48,16 @@ if (isset($_POST['submit'])) {
                         <form action="" method="post" enctype="multipart/form-data">
                             <div class="form-group"><label for="company" class=" form-control-label">Categories</label><input type="text" value="<?php echo $category ?>" name="category" id="company" placeholder="Enter categories name" class="form-control" required></div>
                             <div class="form-group"><label for="company" class=" form-control-label">Image</label><input type="file"  name="image" id="company" class="form-control"></div>
+                            <div class="form-group">
+                                <label for="company" class=" form-control-label">Section</label>
 
+                                <select class="form-control" name="section_id" id="">
+                                <option value="*">Select Section</option>
+                                    <option value="0">Art</option>
+                                    <option value="1">Scrap</option>
+
+                                </select>
+                            </div>
                             <button id="payment-button" type="submit" name="submit" class="btn btn-lg btn-info btn-block">
                                 <span id="payment-button-amount">Submit</span>
                             </button>
