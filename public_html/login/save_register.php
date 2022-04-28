@@ -6,13 +6,14 @@ if (isset($_POST['submit'])) {
     // $phone = $_POST['phone'];
     $password = $_POST['password'];
     $cpassword = $_POST['cpassword'];
-
     $pass = password_hash($password, PASSWORD_BCRYPT);
     $cpass = password_hash($cpassword, PASSWORD_BCRYPT);
-
     $emailquery = "select * from registration where email='$email'";
     $query = mysqli_query($conn, $emailquery);
     $emailcount = mysqli_num_rows($query);
+
+
+    
     if ($emailcount > 0) {
         echo "email already exists";
     } else {

@@ -12,7 +12,7 @@ if (isset($_POST['submit'])) {
     } else {
             $query = "insert into subscription(user,duration) values('$user','$duration')";
             $result = mysqli_query($conn, $query) or die('Error occur !');
-            header('location:../users/index.php');
+            header('location:../users/product.php');
             echo "submited";
        
         }
@@ -29,7 +29,7 @@ if (isset($_POST['submit'])) {
     } else {
             $query = "insert into subscription(user,duration) values('$user','$duration')";
             $result = mysqli_query($conn, $query) or die('Error occur !');
-            header('location:../users/index.php');
+            header('location:../users/product.php');
 
             echo "submited";
        
@@ -47,7 +47,7 @@ if (isset($_POST['submit'])) {
     } else {
             $query = "insert into subscription(user,duration) values('$user','$duration')";
             $result = mysqli_query($conn, $query) or die('Error occur !');
-            header('location:../users/index.php');
+            header('location:../users/product.php');
 
             echo "submited";
        

@@ -31,7 +31,7 @@
     session_start();
     // include('../../db.php');
 
-    if(isset($_SESSION['loggedin']) && $_SESSION['loggedin']==true && $_SESSION['name']){
+    if(isset($_SESSION['loggedin']) && $_SESSION['loggedin']==true && $_SESSION['id']){
         $loggedin=true;
     }else{
         $loggedin=false;
@@ -62,9 +62,9 @@
                    ';
                    
                    
-                       echo '<li><a href="../../users/index.php">ART</a></li>';
+                       echo '<li><a href="../../users/product.php">ART</a></li>';
                    
-                      echo' <li><a href="../../scrap_users/index.php">SCRAP</a></li>';
+                      echo' <li><a href="../../scrap_users/scrap.php">SCRAP</a></li>';
                  
                  }
                echo ' 

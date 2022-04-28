@@ -1,5 +1,4 @@
-<?php 
-include('../db.php');
+<?php include('../db.php');
 include('./includes/header.php');
 if (isset($_GET['type']) && $_GET['type'] != '') {
    $type =  mysqli_real_escape_string($conn, $_GET['type']);
@@ -25,13 +24,13 @@ if (isset($_GET['type']) && $_GET['type'] != '') {
       $update_status = "update product set section='$section' where id='$id'";
       mysqli_query($conn, $update_status);
    }
-  
+
 }
 
-$findUser = $_SESSION['id'];
-// $sql = "select product.*,category.category from product, category where product.category_id=category.id order by product.id asc";
-// $sql="   select * from product join category where product.category_id=category.id and join registration where product.user_id=registration.id ";
-$sql = "select * from product where user_id='$findUser' order by 1 DESC";
+
+// $sql = "select product.*,category.category from product, category where product.category_id=category.id and section='0' order by product.id asc";
+$sql="select * from product join category where product.category_id=category.id and section='0'";
+
 $res = mysqli_query($conn, $sql);
 ?>
 
@@ -56,31 +55,27 @@ $res = mysqli_query($conn, $sql);
                               <th>image</th>
                               <th>Price</th>
                               <th>Qty</th>
-
                               <th>Section</th>
                               <th>Status</th>
-                              <th>Action
-                              <th>
+                              <th>Action<th>
                            </tr>
                         </thead>
                         <tbody>
                            <?php
-                        
+                           $i = 1;
                            while ($row = mysqli_fetch_assoc($res)) { ?>
                               <tr>
-                                 <!-- <td class="serial"><?php echo $i ?></td> -->
+                                 <td class="serial"><?php echo $i ?></td>
                                  <td><?php echo $row['id'] ?></td>
                                  <td><?php echo $row['category'] ?></td>
                                  <td><?php echo $row['name'] ?></td>
-                                 <td><img src="./images/<?php echo $row['image'] ?>"></td>
+                                 <td><img src="./images/<?php echo $row['image'] ?>" ></td>
                                  <td><?php echo $row['price'] ?></td>
                                  <td><?php echo $row['qty'] ?></td>
                                  <td><?php
-                                       if ($row['section'] == 1) {
-                                          echo "<a href='?type=section&operation=scrap&id=" . $row['id'] . "'>Creative</a>";
-                                       } else {
+                                      
                                           echo "<a href='?type=section&operation=artist&id=" . $row['id'] . "'>Waste</a>";
-                                       }
+
 
 
                                        ?></td>
@@ -93,14 +88,11 @@ $res = mysqli_query($conn, $sql);
 
 
                                        ?></td>
+                                       </td>
+                                    <td><a href="delete_product.php?id=<?php echo $row['id'];?>">Delete</a>&nbsp;
 
-                                 
-                                 </td>
-                                 <td><a href="delete_product.php?id=<?php echo $row['id']; ?>">Delete</a>&nbsp;
-
-                                    <a href='add_product.php?id=<?php echo $row['id']; ?>'>Edit</a>
-                                 </td>
-
+                                    <a href='add_product.php?id=<?php echo $row['id'];?>'>Edit</a></td>
+                                  
                               </tr>
                            <?php } ?>
                         </tbody>

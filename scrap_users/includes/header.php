@@ -23,7 +23,7 @@
                <ul class="nav navbar-nav">
                   <li class="menu-title">Menu</li>
                   <li class="menu-item-has-children dropdown">
-                     <a href="product.php" > Manage Products</a>
+                     <a href="scrap.php" > Manage Products</a>
                   </li>
                   <li class="menu-item-has-children dropdown">
                      <a href="view_category.php" > View Products Category</a>

@@ -11,21 +11,21 @@ if (isset($_POST['submit'])) {
         </script>
         <?php
     } else {
-        $email_search = "select * from registration where email='$email' ";
+        $email_search = "select * from registration where email='$email'";
         $query = mysqli_query($conn, $email_search);
         $email_count = mysqli_num_rows($query);
         if ($email_count > 0) {
-            $email_pass = mysqli_fetch_assoc($query);
-            $login = true;
-            $db_pass = $email_pass['password'];
+            $user_data = mysqli_fetch_assoc($query);
+            $db_pass = $user_data['password'];
 
 
             //comments
             $pass_decode = password_verify($password, $db_pass);
             if ($pass_decode) {
                 session_start();
+                $_SESSION['id']=$user_data['id'];
                 $_SESSION['loggedin'] = true;
-                $_SESSION['name'] = $username;
+                // $_SESSION['name'] = $username;
                 echo "login success";
                 header('location:../../public_html/pages/index.php');
             } else {
