@@ -13,6 +13,18 @@ if (isset($_GET['type']) && $_GET['type'] != '') {
       $update_status = "update product set status='$status' where id='$id'";
       mysqli_query($conn, $update_status);
    }
+
+   if ($type = 'featured_art') {
+      $operation =  mysqli_real_escape_string($conn, $_GET['operation']);
+      $id =  mysqli_real_escape_string($conn, $_GET['id']);
+      if ($operation == 'show') {
+         $featured_art = '1';
+      } else {
+         $featured_art = '0';
+      }
+      $update_status = "update product set featured_art='$featured_art' where id='$id'";
+      mysqli_query($conn, $update_status);
+   }
   
 
 }
@@ -60,17 +72,7 @@ $res = mysqli_query($conn, $sql);
                                  <td><?php echo $row['price'] ?></td>
                                  <td><?php echo $row['qty'] ?></td>
                                  <td><?php
-                                  if ($type = 'featured_art') {
-                                    $operation =  mysqli_real_escape_string($conn, $_GET['operation']);
-                                    $id =  mysqli_real_escape_string($conn, $_GET['id']);
-                                    if ($operation == 'show') {
-                                       $featured_art = '1';
-                                    } else {
-                                       $featured_art = '0';
-                                    }
-                                    $update_status = "update product set featured_art='$featured_art' where id='$id'";
-                                    mysqli_query($conn, $update_status);
-                                 }
+                                  
                                        if ($row['featured_art'] == 0) {
                                           echo "<a href='?type=featured_art&operation=show&id=" . $row['id'] . "'>Active</a>";
                                        } else {
