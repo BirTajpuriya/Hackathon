@@ -12,17 +12,16 @@
 <body>
     <?php
     include("../common/header.php");
- 
+
     ?>
     <?php
-$server="localhost";
-$user="root";
-$password="";
-$db="wastetoart";
+    $server = "localhost";
+    $user = "root";
+    $password = "";
+    $db = "wastetoart";
+    $conn = mysqli_connect($server, $user, $password, $db) or die('connection failed');
 
-$conn=mysqli_connect($server,$user,$password,$db) or die('connection failed');
-
-?>
+    ?>
     <!-- filter starts -->
     <div class="form">
         <form method="post">
@@ -61,15 +60,15 @@ $conn=mysqli_connect($server,$user,$password,$db) or die('connection failed');
     </div>
 
     <!-- product starts -->
-   
+
     <div class='artcontainer'>
-    <?php
+        <?php
         $sql = "select product.*,category.category from product, category where product.category_id=category.id and status=1";
-    $res = mysqli_query($conn, $sql);
-    while ($row = mysqli_fetch_assoc($res)) { 
-        if($row){
-        $title = $row['name']; 
-    echo"
+        $res = mysqli_query($conn, $sql);
+        while($row = mysqli_fetch_assoc($res)) {
+            if ($row) {
+                $title = $row['name'];
+                echo "
         <div class='listing'>
             <div class='listingImage'>
                 <a href='./room_detail.php?id='>
@@ -87,17 +86,16 @@ $conn=mysqli_connect($server,$user,$password,$db) or die('connection failed');
             </div>
         </div>
         ";
+            } else {
+                echo "no Result Found";
+            }
         }
-        else{
-            echo"no Result Found";
-        }
-    }
-    ?>
+        ?>
     </div>
 
 
 
-    
+
     <?php
     include(".././common/footer.php");
 

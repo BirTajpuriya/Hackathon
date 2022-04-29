@@ -10,29 +10,47 @@
 </head>
 
 <body>
+<?php
+
+$server="localhost";
+$user="root";
+$password="";
+$db="wastetoart";
+
+$conn=mysqli_connect($server,$user,$password,$db) or die('connection failed');
+
+?>
     <?php
     include("../common/header.php");
     ?>
-
-
+<?php
+    $sql = "select product.*,category.category from product, category where product.category_id=category.id and featured_art=1";
+    $res = mysqli_query($conn, $sql);
+                           while ($row = mysqli_fetch_assoc($res)) {
+    ?>
 
 
     <div class="slider">
         <div class="slide">
-
-            <img src='../img/product/art/flower.jpg' class='listImg' alt='Rooms Near Me'>
+        
+    
+            <img src='../../users/images/<?php echo $row['image'] ?>' class='listImg' alt='Rooms Near Me'>
             <div class='caption'>First Image</div>
         </div>
 
         <div class='slide'>
-            <img src='../img/product/art/flower.jpg' class='listImg' alt='Rooms Near Me' />
+            <img src='../../users/images/<?php echo $row['image'] ?>' class='listImg' alt='Rooms Near Me' />
             <div class='caption'>Second Image</div>
         </div>
 
         <div class='slide'>
-            <img src='../img/product/art/flower.jpg' class='listImg' alt='Rooms Near Me' />
+            <img src='../../users/images/<?php echo $row['image'] ?>' class='listImg' alt='Rooms Near Me' />
             <div class='caption'>Third Image</div>
         </div>
+    
+
+       
+
 
         <!-- buttons -->
         <a class="prev">&#10094;</a>
@@ -47,63 +65,22 @@
             <div class="acr-listing-section-body">
                 <div class="acr-listing-section-price">
                     <span>For Sale</span>
-                    <h3>Rs.5000</h3>
+                    <h3>Rs.<?php echo $row['price'] ?></h3>
                     <span>Per Item</span>
-                    <p>Rs.5000/PCS</p>
                 </div>
                 <button class="button" name="submit">BUY NOW</button>
             </div>
         </div>
         <div class="acr-listing-section">
             <div class="acr-listing-section-body">
-                <h1> <?php echo "Lorem Ipsum is simply dummy text of the printing and typesetting industry."; ?> </h1>
-                <div class="acr-listing-icons">
-                    <div class="acr-listing-icon">
-                        <i class="flaticon-bedroom"></i>
-                        <span>
-                            <?php
-                            $furnished = 1;
-                            if ($furnished == 1) {
-                                echo "<img src='../img/user/logo.png' class='icons' alt='Rooms Near Me' />
-                    
-                    </span>
-                    <span class='acr-listing-icon-value'>Furnished</span>
-                    ";
-                            }
-                            ?>
-                    </div>
-                    <div class="acr-listing-icon">
-                        <i class="flaticon-bathroom"></i>
-                        <span>
-                            <?php
-                            $water = 1;
-                            if ($water == 1) {
-                                echo "<img src='../img/user/logo.png' class='icons' alt='Rooms Near Me' />
-                    
-                    </span>
-                    <span class='acr-listing-icon-value'>Water</span>
-                    ";
-                            }
-                            ?>
-                    </div>
-                    <div class="acr-listing-icon">
-                        <i class="flaticon-ruler"></i>
-                        <span>
-                            <?php
-                            $electricity = 1;
-                            if ($electricity == 1) {
-                                echo "<img src='../img/user/logo.png' class='icons' alt='Rooms Near Me' />
-                    
-                    </span>
-                    <span class='acr-listing-icon-value'>Electricity</span>
-                    ";
-                            }
-                            ?>
-                    </div>
-                </div>
+                <h1> <?php echo $row['name'] ?> </h1>
+               
                 <p>
-                    <?php echo "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."; ?>
+                <?php echo $row['description'] ?>
                 </p>
+                <?php
+    }
+        ?>
             </div>
         </div>
 

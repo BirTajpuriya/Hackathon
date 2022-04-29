@@ -21,23 +21,24 @@
                                 
       <?php  
       $title = $row['name']; 
+      $id = $row['id'];
     //   <img src="./images/<?php echo $row['image'] 
                            
     echo"
     <div class='listing'>
             <div class='listingImage'>
-                <a href='./room_detail.php?id=#'>
+                <a href='./artdetail.php?id=$id'>
                     <img src='../img/product/art/chair.jpg' class='listImg' alt='Rooms Near Me'>
                 </a>
             </div>
 
             <div class='listingBody'>
-                <h6 class='listingTitle'> <a href='./index.php?id=#'>$title</a> </h6>
+                <h6 class='listingTitle'> <a href='./artdetail.php?id=$id'>$title</a> </h6>
                 <span class='listingPlace'>Electric</span>
             </div>
             <div class='listingBody2'>
                 <p class='listingPrice'>Rs.5000<span></span></p>
-                <a class='btn' href='./room_detail.php?id=#'>Details</a>
+                <a class='btn' href='./artdetail.php?id=$id'>Details</a>
             </div>
         </div>
     ";
