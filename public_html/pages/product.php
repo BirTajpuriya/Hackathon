@@ -11,70 +11,38 @@
 
 <body>
     <div class="artcontainer">
-        <div class='listing'>
+
+    <?php
+    $sql = "select product.*,category.category from product, category where product.category_id=category.id and featured_art=1";
+    $res = mysqli_query($conn, $sql);
+                           while ($row = mysqli_fetch_assoc($res)) { 
+    ?>
+                             
+                                
+      <?php  
+      $title = $row['name']; 
+    //   <img src="./images/<?php echo $row['image'] 
+                           
+    echo"
+    <div class='listing'>
             <div class='listingImage'>
-                <a href='./room_detail.php?id=$id'>
+                <a href='./room_detail.php?id=#'>
                     <img src='../img/product/art/chair.jpg' class='listImg' alt='Rooms Near Me'>
                 </a>
             </div>
 
             <div class='listingBody'>
-                <h6 class='listingTitle'> <a href='./index.php?id=$id'>Home Decor Made From Art</a> </h6>
+                <h6 class='listingTitle'> <a href='./index.php?id=#'>$title</a> </h6>
                 <span class='listingPlace'>Electric</span>
             </div>
             <div class='listingBody2'>
                 <p class='listingPrice'>Rs.5000<span></span></p>
-                <a class='btn' href='./room_detail.php?id=$id'>Details</a>
+                <a class='btn' href='./room_detail.php?id=#'>Details</a>
             </div>
         </div>
-        <div class='listing'>
-            <div class='listingImage'>
-                <a href='./room_detail.php?id=$id'>
-                    <img src='../img/product/art/flower.jpg' class='listImg' alt='Rooms Near Me'>
-                </a>
-            </div>
-
-            <div class='listingBody'>
-                <h6 class='listingTitle'> <a href='./index.php?id=$id'>Home Decor Made From Art</a> </h6>
-                <span class='listingPlace'>Plastic</span>
-            </div>
-            <div class='listingBody2'>
-                <p class='listingPrice'>Rs.5000<span></span></p>
-                <a class='btn' href='./room_detail.php?id=$id'>Details</a>
-            </div>
-        </div>
-        <div class='listing'>
-            <div class='listingImage'>
-                <a href='./room_detail.php?id=$id'>
-                    <img src='../img/product/art/shark.jpg' class='listImg' alt='Rooms Near Me'>
-                </a>
-            </div>
-
-            <div class='listingBody'>
-                <h6 class='listingTitle'> <a href='./index.php?id=$id'>Home Decor Made From Art</a> </h6>
-                <span class='listingPlace'>Wooden</span>
-            </div>
-            <div class='listingBody2'>
-                <p class='listingPrice'>Rs.5000<span></span></p>
-                <a class='btn' href='./room_detail.php?id=$id'>Details</a>
-            </div>
-        </div>
-        <div class='listing'>
-            <div class='listingImage'>
-                <a href='./room_detail.php?id=$id'>
-                    <img src='../img/user/electric.jpg' class='listImg' alt='Rooms Near Me'>
-                </a>
-            </div>
-
-            <div class='listingBody'>
-                <h6 class='listingTitle'> <a href='./index.php?id=$id'>Home Decor Made From Art</a> </h6>
-                <span class='listingPlace'>Kathmandu</span>
-            </div>
-            <div class='listingBody2'>
-                <p class='listingPrice'>Rs.5000<span></span></p>
-                <a class='btn' href='./room_detail.php?id=$id'>Details</a>
-            </div>
-        </div>
+    ";
+                           }
+    ?>    
     </div>
 </body>
 
