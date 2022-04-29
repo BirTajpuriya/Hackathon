@@ -1,6 +1,7 @@
 <?php
 include('../db.php');
 $uploadby=$_SESSION['id'];
+$sellername=$_SESSION['name'];
 include('./includes/header.php');
 $category_id = '';
 $msg = '';
@@ -49,7 +50,7 @@ if (isset($_POST['submit'])) {
         } else {
             $image=rand(11111111,99999999).'_'.$_FILES['image']['name'];
             move_uploaded_file($_FILES['image']['tmp_name'],'./images/'.$image);
-                $sql="insert into product(name,image,price,description,qty,category_id,status,section,seller_name) values('$name','$image','$price','$desc','$qty','$category_id',0,1,'$uploadby')";
+                $sql="insert into product(name,image,price,description,qty,category_id,status,section,seller_name,user_id) values('$name','$image','$price','$desc','$qty','$category_id',0,1,'$sellername','$uploadby')";
             mysqli_query($conn, $sql);
         }
 

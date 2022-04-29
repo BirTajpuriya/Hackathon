@@ -25,7 +25,7 @@ if (isset($_POST['submit'])) {
                 session_start();
                 $_SESSION['id']=$user_data['id'];
                 $_SESSION['loggedin'] = true;
-                // $_SESSION['name'] = $username;
+                $_SESSION['name'] = $username;
                 echo "login success";
                 header('location:../../public_html/pages/index.php');
             } else {

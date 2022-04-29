@@ -29,9 +29,11 @@ if (isset($_GET['type']) && $_GET['type'] != '') {
 }
 
 $findUser = $_SESSION['id'];
-// $sql = "select product.*,category.category from product, category where product.category_id=category.id order by product.id asc";
+// $sql = "select product.*,category.category from category where product.category_id=category.id order by product.id asc";
 // $sql="   select * from product join category where product.category_id=category.id and join registration where product.user_id=registration.id ";
-$sql = "select * from product where user_id='$findUser' order by 1 DESC";
+// $sql = "select * from product where user_id='$findUser' order by 1 DESC";
+// $sql = "select * from product";
+$sql= "SELECT product.*, category.category FROM category, product WHERE product.category_id = category.id ";
 $res = mysqli_query($conn, $sql);
 ?>
 
@@ -49,7 +51,7 @@ $res = mysqli_query($conn, $sql);
                      <table class="table ">
                         <thead>
                            <tr>
-                              <th class="serial">#</th>
+                              <!-- <th class="serial">#</th> -->
                               <th>ID</th>
                               <th>Categories</th>
                               <th>Name</th>
@@ -68,7 +70,6 @@ $res = mysqli_query($conn, $sql);
                         
                            while ($row = mysqli_fetch_assoc($res)) { ?>
                               <tr>
-                                 <!-- <td class="serial"><?php echo $i ?></td> -->
                                  <td><?php echo $row['id'] ?></td>
                                  <td><?php echo $row['category'] ?></td>
                                  <td><?php echo $row['name'] ?></td>
