@@ -22,7 +22,7 @@ $res = mysqli_query($conn, $sql);
                      <table class="table ">
                         <thead>
                            <tr>
-                              <th class="serial">#</th>
+                              <!-- <th class="serial">#</th> -->
                               <th class="avatar">ID</th>
                               <th>Categories</th>
                               <th>Image</th>
@@ -35,7 +35,7 @@ $res = mysqli_query($conn, $sql);
                            $i = 1;
                            while ($row = mysqli_fetch_assoc($res)) { ?>
                               <tr>
-                                 <td class="serial"><?php echo $i ?></td>
+                                
                                  <td><?php echo $row['id'] ?></td>
                                  <td><?php echo $row['category'] ?></td>
                                  <td><img src="../admin/images/<?php echo $row['image'] ?>" width="200" height="60" alt=""></td>
