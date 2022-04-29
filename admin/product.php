@@ -1,5 +1,4 @@
-<?php 
-include('../db.php');
+<?php
 include('./includes/header.php');
 if (isset($_GET['type']) && $_GET['type'] != '') {
    $type =  mysqli_real_escape_string($conn, $_GET['type']);
@@ -14,26 +13,23 @@ if (isset($_GET['type']) && $_GET['type'] != '') {
       $update_status = "update product set status='$status' where id='$id'";
       mysqli_query($conn, $update_status);
    }
-   if ($type = 'section') {
+
+   if ($type = 'featured_art') {
       $operation =  mysqli_real_escape_string($conn, $_GET['operation']);
       $id =  mysqli_real_escape_string($conn, $_GET['id']);
-      if ($operation == 'artist') {
-         $section = '1';
+      if ($operation == 'show') {
+         $featured_art = '1';
       } else {
-         $section = '0';
+         $featured_art = '0';
       }
-      $update_status = "update product set section='$section' where id='$id'";
+      $update_status = "update product set featured_art='$featured_art' where id='$id'";
       mysqli_query($conn, $update_status);
    }
   
+
 }
 
-$findUser = $_SESSION['id'];
-// $sql = "select product.*,category.category from category where product.category_id=category.id order by product.id asc";
-// $sql="   select * from product join category where product.category_id=category.id and join registration where product.user_id=registration.id ";
-// $sql = "select * from product where user_id='$findUser' order by 1 DESC";
-// $sql = "select * from product";
-$sql= "SELECT product.*, category.category FROM category, product WHERE product.category_id = category.id and product.section=0 and user_id='$findUser' and status = 1";
+$sql = "select product.*,category.category from product, category where product.category_id=category.id order by product.id asc";
 $res = mysqli_query($conn, $sql);
 ?>
 
@@ -44,43 +40,45 @@ $res = mysqli_query($conn, $sql);
             <div class="card">
                <div class="card-body">
                   <h4 class="box-title">Products</h4>
-                  <h4 class="box-link"><a href="add_product.php">Add product</a></h4>
+                  <!-- <h4 class="box-link"><a href="add_product.php">Add product</a></h4> -->
                </div>
                <div class="card-body--">
                   <div class="table-stats order-table ov-h">
                      <table class="table ">
                         <thead>
                            <tr>
-                              <!-- <th class="serial">#</th> -->
+                              <th class="serial">#</th>
                               <th>ID</th>
+                              <th>Seller</th>
                               <th>Categories</th>
                               <th>Name</th>
                               <th>image</th>
                               <th>Price</th>
                               <th>Qty</th>
-
-                              <th>Section</th>
+                              <th>featured art</th>
                               <th>Status</th>
-                              <th>Action
-                              <th>
+                              <th>Action<th>
                            </tr>
                         </thead>
                         <tbody>
                            <?php
-                        
+                           $i = 1;
                            while ($row = mysqli_fetch_assoc($res)) { ?>
                               <tr>
+                                 <td class="serial"><?php echo $i ?></td>
                                  <td><?php echo $row['id'] ?></td>
+                                 <td><?php echo $row['seller_name'] ?></td>
                                  <td><?php echo $row['category'] ?></td>
                                  <td><?php echo $row['name'] ?></td>
-                                 <td><img src="./images/<?php echo $row['image'] ?>"></td>
+                                 <td><img src="./images/<?php echo $row['image'] ?>" width="200" height="60" alt=""></td>
                                  <td><?php echo $row['price'] ?></td>
                                  <td><?php echo $row['qty'] ?></td>
                                  <td><?php
-                                       if ($row['section'] == 1) {
-                                          echo "<a href='?type=section&operation=scrap&id=" . $row['id'] . "'>Creative</a>";
+                                  
+                                       if ($row['featured_art'] == 0) {
+                                          echo "<a href='?type=featured_art&operation=show&id=" . $row['id'] . "'>Active</a>";
                                        } else {
-                                          echo "<a href='?type=section&operation=artist&id=" . $row['id'] . "'>Waste</a>";
+                                          echo "<a href='?type=featured_art&operation=unshow&id=" . $row['id'] . "'>Deactive</a>";
                                        }
 
 
@@ -94,14 +92,11 @@ $res = mysqli_query($conn, $sql);
 
 
                                        ?></td>
+                                       </td>
+                                    <td><a href="delete_product.php?id=<?php echo $row['id'];?>">Delete</a>&nbsp;
 
-                                 
-                                 </td>
-                                 <td><a href="delete_product.php?id=<?php echo $row['id']; ?>">Delete</a>&nbsp;
-
-                                    <a href='add_product.php?id=<?php echo $row['id']; ?>'>Edit</a>
-                                 </td>
-
+                                    <a href='add_product.php?id=<?php echo $row['id'];?>'>Edit</a></td>
+                                  
                               </tr>
                            <?php } ?>
                         </tbody>
@@ -113,3 +108,6 @@ $res = mysqli_query($conn, $sql);
       </div>
    </div>
 </div>
+<?php
+include('./includes/footer.php')
+?>

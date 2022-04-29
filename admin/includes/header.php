@@ -1,3 +1,13 @@
+<?php
+include('../db.php');
+if(isset($_SESSION['admin_login']) && $_SESSION['admin_login']!=''){
+
+}else{
+    header('location:login.php');
+    die();
+}
+  
+?>
 <!doctype html>
 <html class="no-js" lang="">
    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
@@ -23,12 +33,19 @@
                <ul class="nav navbar-nav">
                   <li class="menu-title">Menu</li>
                   <li class="menu-item-has-children dropdown">
-                     <a href="scrap.php" > Manage Products</a>
+                     <a href="category.php" > Categories</a>
                   </li>
                   <li class="menu-item-has-children dropdown">
-                     <a href="view_category.php" > View Products Category</a>
+                     <a href="product.php" > Products</a>
                   </li>
-                  
+				  
+				  <li class="menu-item-has-children dropdown">
+                     <a href="users.php" > Users</a>
+                  </li>
+				  <li class="menu-item-has-children dropdown">
+                     <a href="subs_users.php" > Subscribed Users</a>
+                  </li>
+				  
                </ul>
             </div>
          </nav>
@@ -37,17 +54,17 @@
          <header id="header" class="header">
             <div class="top-left">
                <div class="navbar-header">
-                  <a class="navbar-brand" href="../public_html/pages/index.php"><img src="./logo.png" alt="Logo"></a>
-                  <!-- <a class="navbar-brand hidden" href="index.html"><img src="images/logo2.png" alt="Logo"></a> -->
+                  <a class="navbar-brand" href="../public_html/pages/index.php">Admin Waste2Art</a>
+                  <a class="navbar-brand hidden" href="index.html"><img src="images/logo2.png" alt="Logo"></a>
                   <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
                </div>
             </div>
             <div class="top-right">
                <div class="header-menu">
                   <div class="user-area dropdown float-right">
-                     <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Welcome</a>
+                     <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Welcome Admin</a>
                      <div class="user-menu dropdown-menu">
-                        <a class="nav-link" href="#"><i class="fa fa-power-off"></i>Logout</a>
+                        <a class="nav-link" href="logout.php"><i class="fa fa-power-off"></i>Logout</a>
                      </div>
                   </div>
                </div>

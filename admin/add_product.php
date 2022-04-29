@@ -1,5 +1,4 @@
 <?php
-include('../db.php');
 include('./includes/header.php');
 $category_id = '';
 $msg = '';
@@ -8,6 +7,7 @@ $price = '';
 $qty = '';
 $desc = '';
 $image = '';
+// mysqli_query($con,"insert into product(name,image,price,description,qty,category_id,status) values('$name','$image','$price','$desc','$qty','$category_id',0)");
 
 
 
@@ -45,7 +45,7 @@ if (isset($_POST['submit'])) {
         } else {
             $image=rand(11111111,99999999).'_'.$_FILES['image']['name'];
             move_uploaded_file($_FILES['image']['tmp_name'],'./images/'.$image);
-                $sql="insert into product(name,image,price,description,qty,category_id,status,section) values('$name','$image','$price','$desc','$qty','$category_id',0,0)";
+                $sql="insert into product(name,image,price,description,qty,category_id,status) values('$name','$image','$price','$desc','$qty','$category_id',0)";
             mysqli_query($conn, $sql);
         }
 
@@ -123,3 +123,7 @@ if (isset($_POST['submit'])) {
 </div>
 
 
+<?php
+include('./includes/footer.php');
+
+?>

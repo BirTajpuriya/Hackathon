@@ -3,17 +3,17 @@ include('../db.php');
 include('./includes/header.php');
 if (isset($_GET['type']) && $_GET['type'] != '') {
    $type =  mysqli_real_escape_string($conn, $_GET['type']);
-   if ($type = 'status') {
-      $operation =  mysqli_real_escape_string($conn, $_GET['operation']);
-      $id =  mysqli_real_escape_string($conn, $_GET['id']);
-      if ($operation == 'active') {
-         $status = '1';
-      } else {
-         $status = '0';
-      }
-      $update_status = "update product set status='$status' where id='$id'";
-      mysqli_query($conn, $update_status);
-   }
+   // if ($type = 'status') {
+   //    $operation =  mysqli_real_escape_string($conn, $_GET['operation']);
+   //    $id =  mysqli_real_escape_string($conn, $_GET['id']);
+   //    if ($operation == 'active') {
+   //       $status = '1';
+   //    } else {
+   //       $status = '0';
+   //    }
+   //    $update_status = "update product set status='$status' where id='$id'";
+   //    mysqli_query($conn, $update_status);
+   // }
    if ($type = 'section') {
       $operation =  mysqli_real_escape_string($conn, $_GET['operation']);
       $id =  mysqli_real_escape_string($conn, $_GET['id']);
@@ -33,7 +33,7 @@ $findUser = $_SESSION['id'];
 // $sql="   select * from product join category where product.category_id=category.id and join registration where product.user_id=registration.id ";
 // $sql = "select * from product where user_id='$findUser' order by 1 DESC";
 // $sql = "select * from product";
-$sql= "SELECT product.*, category.category FROM category, product WHERE product.category_id = category.id ";
+$sql= "SELECT product.*, category.category FROM category, product WHERE product.category_id = category.id and product.section=1 and user_id='$findUser'";
 $res = mysqli_query($conn, $sql);
 ?>
 
@@ -87,9 +87,11 @@ $res = mysqli_query($conn, $sql);
                                        ?></td>
                                  <td><?php
                                        if ($row['status'] == 1) {
-                                          echo "<a href='?type=status&operation=deactive&id=" . $row['id'] . "'>Active</a>";
+                                          echo "<a >Active</a>";
+                                          // href='?type=status&operation=deactive&id=" . $row['id'] . "'
                                        } else {
-                                          echo "<a href='?type=status&operation=active&id=" . $row['id'] . "'>Deactive</a>";
+                                          echo "<a>Deactive</a>";
+                                          // href='?type=status&operation=active&id=" . $row['id'] . "'
                                        }
 
 
