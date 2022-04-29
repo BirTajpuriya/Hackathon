@@ -3,6 +3,7 @@ include('../db.php');
 
 $sql="select * from subscription join registration where subscription.user=registration.name";
 $res = mysqli_query($conn, $sql);
+
 ?>
 
 

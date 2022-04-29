@@ -37,6 +37,23 @@ $sql= "SELECT product.*, category.category FROM category, product WHERE product.
 $res = mysqli_query($conn, $sql);
 ?>
 
+<!-- subscription from here -->
+<?php
+$user = $_SESSION['name'];
+if ($user) {
+   $check = "select * from subscription where user='$user'";
+   $query = mysqli_query($conn, $check);
+   $count = mysqli_num_rows($query);
+   if ($count =='') {
+      
+      // echo "<script>alert('First Of All Take Subscription !')</script>";
+      header('location:../subscription/index.php');
+      
+   }
+}
+
+?>
+
 <div class="content pb-0">
    <div class="orders">
       <div class="row">

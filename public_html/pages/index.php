@@ -19,6 +19,7 @@
     $conn=mysqli_connect($server,$user,$password,$db) or die('connection failed');
     
     include("../common/header.php");
+    
 
 
 

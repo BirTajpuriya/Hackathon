@@ -1,7 +1,8 @@
 <?php
 include('../db.php');
 if (isset($_POST['submit'])) {
-    $user = $_SESSION['name'];
+    $user = $_SESSION['id'];
+    $username =$_SESSION['name'];
     $duration = '6 month';
    
     $emailquery = "select * from subscription where user='$user'";
@@ -10,7 +11,7 @@ if (isset($_POST['submit'])) {
     if ($emailcount = 0) {
         echo "Already Subscribed !";
     } else {
-            $query = "insert into subscription(user,duration) values('$user','$duration')";
+            $query = "insert into subscription(user,duration) values('$username','$duration')";
             $result = mysqli_query($conn, $query) or die('Error occur !');
             header('location:../users/product.php');
             echo "submited";
@@ -18,7 +19,9 @@ if (isset($_POST['submit'])) {
         }
     }
     elseif(isset($_POST['submit2'])){
-        $user = $_SESSION['name'];
+        $user = $_SESSION['id'];
+        $username =$_SESSION['name'];
+
     $duration = '1 year';
    
     $emailquery = "select * from subscription where user='$user'";
@@ -27,7 +30,7 @@ if (isset($_POST['submit'])) {
     if ($emailcount = 0) {
         echo "Already Subscribed !";
     } else {
-            $query = "insert into subscription(user,duration) values('$user','$duration')";
+            $query = "insert into subscription(user,duration) values('$username','$duration')";
             $result = mysqli_query($conn, $query) or die('Error occur !');
             header('location:../users/product.php');
 
@@ -36,7 +39,9 @@ if (isset($_POST['submit'])) {
         }
     }
     else{
-        $user = $_SESSION['name'];
+        $user = $_SESSION['id'];
+        $username =$_SESSION['name'];
+
     $duration = '2 year';
    
     $emailquery = "select * from subscription where user='$user'";
@@ -45,7 +50,7 @@ if (isset($_POST['submit'])) {
     if ($emailcount = 0) {
         echo "Already Subscribed !";
     } else {
-            $query = "insert into subscription(user,duration) values('$user','$duration')";
+            $query = "insert into subscription(user,duration) values('$username','$duration')";
             $result = mysqli_query($conn, $query) or die('Error occur !');
             header('location:../users/product.php');
 
